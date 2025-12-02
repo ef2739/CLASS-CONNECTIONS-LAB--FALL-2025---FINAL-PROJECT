@@ -12,19 +12,42 @@ window.addEventListener('load', function () {
 });
 
 
-//create a password. establish the connection with main.html through a password check//
+//PASSWORD: verify the entered password and check if it's correct. --For SAFETY PURPOSES the next process is to "hide" the password through server side file
 
-// document.getElementById("enter-main-page-btn").addEventListener("click", checkPassword);
+document.getElementById("enter-main-page-btn").addEventListener("click", async () => {
+    const input = document.getElementById("passwordbox").value;
 
-// function checkPassword() {
-//     let correctpswd = "123";
-//     let entered = document.getElementById("passwordbox").value;
+    const response = await fetch('/check-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: input })
+    });
 
-//     if (entered === correctpswd) {
-//         window.location.href = "main.html"; 
-//     } else {
-//         alert("Wrong password!");
-//     }
-// }
+    const data = await response.json();
+
+    if(data.success){
+        sessionStorage.setItem("authenticated", "true");
+        window.location.href = "main.html";
+    } else {
+        document.getElementById("error").innerText = "Wrong password!";
+    }
+});
+
+// Verify also with enter
+
+document.getElementById("passwordbox").addEventListener("keyup", (e) => {
+    if(e.key === "Enter"){
+        document.getElementById("enter-main-page-btn").click();
+    }
+});
 
 
+//let the hover function on the index.html text work
+
+let paragraphs = document.querySelectorAll('.highlight-words');
+
+paragraphs.forEach(p => {
+  let text = p.textContent;
+  let words = text.split(' ');
+  p.innerHTML = words.map(word => `<span>${word}</span>`).join(' ');
+});
