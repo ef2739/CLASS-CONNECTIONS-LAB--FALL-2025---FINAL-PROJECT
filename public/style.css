@@ -1,0 +1,98 @@
+/* @font-face { */
+    /* font-family: 'Tasa orbiter deck semibold';
+    src: url(font/tasaorbiterdeck-semibold-webfont.woff2) format('woff2'),
+        url(font/tasaorbiterdeck-semibold-webfont.woff) format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tasa orbiter deck M';
+    src: url(./font/tasaorbiterdisplay-medium-webfont.woff2) format('woff2'),
+        url(./font/tasaorbiterdisplay-medium-webfont.woff) format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tasa orbiter deck R';
+    src: url(font/tasaorbiterdisplay-regular-webfont.woff2) format('woff2'),
+        url(font/tasaorbiterdisplay-regular-webfont.woff) format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap; */
+/* } */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: black;
+}
+
+
+.firstpagebox {
+    z-index: 1;
+    top: 35vh;
+    left: 25vw;
+    width: 50vw;
+    height: 25vh;
+    position: fixed;
+    border-width: 3px;
+    border-style: solid;
+    border-color: chartreuse;
+    align-content: center;
+}
+
+.password {
+    font-family: monospace;
+    color: white;
+    margin-left: 25%;
+}
+
+#passwordbox {
+    /* font-family: Tasa orbiter deck semibold; */
+    font-family: monospace;
+    color: chartreuse;
+    width: 50%;
+    margin-left: 5%;
+}
+
+#enter-main-page-btn{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    border-radius: 10px;
+    align-items: center;
+    color: white;
+    margin-top: 5%;
+    margin-left: 47%;
+    -moz-box-shadow: inset 1px 1px 5px #848484;
+    -webkit-box-shadow: inset 1px 1px 5px #848484;
+
+}
+
+
+
+.background {
+    z-index: -1;
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: chartreuse;
+    column-count: 2;
+    /* Imposta due colonne */
+    column-gap: 20px;
+    /* Spazio tra le colonne */
+}
+
+
+.body-main{
+    width: 100vh;
+    
+}
+
+
+/* create an hover effect where every word is hihglited in white when the mouse passes over it */
