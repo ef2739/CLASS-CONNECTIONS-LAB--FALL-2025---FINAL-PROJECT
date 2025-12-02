@@ -52,7 +52,7 @@
     margin-left: 25%;
 }
 
-#passwordbox {
+#passwordInput {
     /* font-family: Tasa orbiter deck semibold; */
     font-family: monospace;
     color: chartreuse;
@@ -60,7 +60,7 @@
     margin-left: 5%;
 }
 
-#enter-main-page-btn{
+#loginBtn{
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
@@ -75,7 +75,19 @@
 
 }
 
+input, button {
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 16px;
+}
 
+button {
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+}
 
 .background {
     z-index: -1;
@@ -104,7 +116,6 @@
     font-size: 1.5rem;
     font-family: serif;
   }
-
 
 
 .body-main{
