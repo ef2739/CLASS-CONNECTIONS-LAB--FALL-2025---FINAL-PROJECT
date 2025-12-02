@@ -15,7 +15,7 @@ let app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// POST route to check and verify password
+// POST route per controllare la password
 app.post('/check-password', (req, res) => {
     let { password } = req.body;
     if(password === process.env.PASSWORD){
@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
     });
 });
 
-// Access port 
+// Port
 let port = process.env.PORT || 3000;
 
 server.listen(port, () => {
