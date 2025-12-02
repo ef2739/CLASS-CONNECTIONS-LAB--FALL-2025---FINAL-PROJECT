@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sisters</title>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script> -->
     <script src="/socket.io/socket.io.js"></script>
     <link href="style.css" rel="stylesheet">
 </head>
@@ -15,17 +14,20 @@
     <!--Create a registration box where you enter the password and a button to verifiy it -->
     <div class="firstpagebox">
         <div class="password"> password
-            <input type="text" id="passwordbox" name="password">
+            <input type="password" id="passwordInput" placeholder="Password">
+            <button id="loginBtn">>>></button>
+            <p id="error" class="error"></p>
         </div>
 
-        <button id="enter-main-page-btn">>>>></button>
+    </div>
 
     </div>
 
 
     <!-- create a background with a text about violence -->
+
     <div class="background">
-        <p>
+        <p class="highlight-words">
             What is violence?<br>
             Violence against women and girls (VAW123) is any form of violence disproportionately perpetrated by men
             against women and girls. <br>
