@@ -1,5 +1,5 @@
 /* @font-face { */
-    /* font-family: 'Tasa orbiter deck semibold';
+/* font-family: 'Tasa orbiter deck semibold';
     src: url(font/tasaorbiterdeck-semibold-webfont.woff2) format('woff2'),
         url(font/tasaorbiterdeck-semibold-webfont.woff) format('woff');
     font-weight: 500;
@@ -29,7 +29,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: black;
+    /* background: black; */
 }
 
 
@@ -56,33 +56,37 @@
     /* font-family: Tasa orbiter deck semibold; */
     font-family: monospace;
     color: chartreuse;
-    width: 50%;
-    margin-left: 5%;
+    width: 40%;
+    /* margin-left: 5%; */
+    align-content: center;
 }
 
-#loginBtn{
+#loginBtn {
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
     border: white;
     border-radius: 10px;
-    align-items: center;
+    align-content: center;
     color: white;
-    margin-top: 5%;
-    margin-left: 47%;
+    /* margin-top: 5%; */
+    /* margin-left: 47%; */
     -moz-box-shadow: inset 1px 1px 5px #848484;
     -webkit-box-shadow: inset 1px 1px 5px #848484;
 
 }
 
-input, button {
+input,
+button {
     padding: 10px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     font-size: 16px;
 }
 
 button {
     cursor: pointer;
+    align-content: center;
+
 }
 
 .error {
@@ -108,19 +112,91 @@ button {
     padding: 2px 4px;
     transition: all 0.2s ease;
     cursor: pointer;
-  }
-  
-  .highlight-words span:hover {
+}
+
+.highlight-words span:hover {
     background-color: white;
     color: black;
     font-size: 1.5rem;
-  }
+}
 
-
-.body-main{
-    width: 100vh;
-    
+.body-main {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    font-family: sans-serif;
 }
 
 
+.story-form {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50vw;
+    /* height: 10vh; */
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    z-index: 1000;
+}
 
+
+#story-input {
+    width: 100%;
+    min-height: 40px;
+    max-height: 40vh;
+    resize: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    word-break: normal;
+    white-space: pre-wrap;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    color: black;
+    line-height: 1.4;
+}
+
+
+#story-submit {
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 1px solid #000;
+    background: black;
+    cursor: pointer;
+    color: white;
+    z-index: 10000;
+}
+
+#stories-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Altezza di tutta la pagina */
+    padding: 20px;
+    padding-bottom: 20vh;
+}
+
+.story-item {
+    position: absolute; /* Per il posizionamento random */
+    max-width: 300px; /* Larghezza massima di ogni storia */
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #333;
+    cursor: move; /* Indica che si può spostare (opzionale) */
+}
+
+.story-item p {
+    line-height: 1.6;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
