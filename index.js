@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // POST route per controllare la password
 app.post('/check-password', (req, res) => {
     let { password } = req.body;
-    if(password === process.env.PASSWORD){
+    if (password === process.env.PASSWORD) {
         res.json({ success: true });
     } else {
         res.json({ success: false });
@@ -28,14 +28,24 @@ app.post('/check-password', (req, res) => {
 // Initialize HTTP server
 let server = createServer(app);
 
-// Initialize Socket.io
+// Initialize socket.io (ESM corrected)
 let io = new Server(server);
 
+//Listen for individual clients/users to connect
 io.on('connection', (socket) => {
-    console.log('Client connected:', socket.id);
+    console.log("We have a new client:", socket.id);
+
+    socket.on('msg', (data) => {
+        console.log("Received 'msg' event:", data);
+
+        // send to everyone
+        io.emit('msg', data);
+
+    
+    });
 
     socket.on('disconnect', () => {
-        console.log('Client disconnected:', socket.id);
+        console.log("Client disconnected:", socket.id);
     });
 });
 
@@ -43,5 +53,5 @@ io.on('connection', (socket) => {
 let port = process.env.PORT || 3000;
 
 server.listen(port, () => {
-    console.log('Server listening at port:', port);
+    console.log(`Server listening at port: ${port}`);
 });
