@@ -4,23 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/15.3.5/Tone.min.js"></script>
     <link href="style.css" rel="stylesheet">
 </head>
 
 <body class="body-main">
 
     <div class="story-form">
-        <input type="text" id="story-input" placeholder= "if you feel like it, write your story here. This is a safe space and your experience will be shared anonymously"></textarea> 
+        <textarea id="story-input"
+            placeholder="If you feel like it, write your story here. This is a safe space and your experience will be shared anonymously. You cna"></textarea>
         <!-- placeholder="This is a safe space. Inclusive, non judgmental. If you want, you can share your experience here">> -->
         <button id="story-submit">Send</button>
     </div>
 
+    <div id="stories-wrapper"></div>
+
     <script src="/socket.io/socket.io.js"></script>
-    <!-- <script src="sketch.js"></script> -->
     <script src="app.js"></script>
+
+
+    <!-- Create a method to make the password more secure -->
+    <!-- - allow the main.html page not to be seen if you haven't entered the password in index.html -->
+    <!-- each customer is identified by a socket token. when the password is correct, the browser saves a session token. if not correct there's the alert message -->
+
+ 
+    <script>
+        if (sessionStorage.getItem("authenticated") !== "true") {
+            alert("you need to enter the password!");
+            window.location.href = "index.html";
+        }
+    </script>
+
 </body>
 
 </html>
