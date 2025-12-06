@@ -150,7 +150,7 @@ button {
 
 #story-input {
     width: 100%;
-    min-height: 70px;
+    min-height: 75px;
     max-height: 40vh;
     background-color: black;
     resize: none;
@@ -206,5 +206,6 @@ button {
     color: chartreuse;
     margin: 0;
 }
+
 
 
