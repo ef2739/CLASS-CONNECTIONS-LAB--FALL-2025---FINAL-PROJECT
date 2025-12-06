@@ -4,6 +4,17 @@ import { Server } from 'socket.io';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import 'dotenv/config';
+import { Low } from 'lowdb'
+import { JSONFile } from 'lowdb/node'
+
+let adapter = new JSONFile('./db.json')
+let defaultData = { stories: [] }
+
+let db = new Low(adapter, defaultData)
+
+// Carica il file (se esiste) oppure usa defaultData
+await db.read()
+
 
 // __dirname in ES Modules
 let __filename = fileURLToPath(import.meta.url);
@@ -32,22 +43,50 @@ let server = createServer(app);
 let io = new Server(server);
 
 //Listen for individual clients/users to connect
-io.on('connection', (socket) => {
-    console.log("We have a new client:", socket.id);
+// io.on('connection', (socket) => {
+//     console.log("We have a new client:", socket.id);
 
-    socket.on('msg', (data) => {
-        console.log("Received 'msg' event:", data);
+//     socket.on('msg', (data) => {
+//         console.log("Received 'msg' event:", data);
 
-        // send to everyone
-        io.emit('msg', data);
+//         // send to everyone
+//         io.emit('msg', data);
 
     
+//     });
+
+//     socket.on('disconnect', () => {
+//         console.log("Client disconnected:", socket.id);
+//     });
+// });
+
+
+io.on('connection', async (socket) => {
+    console.log("New client:", socket.id);
+
+    // 1️⃣ quando un utente entra, gli invio la cronologia
+    await db.read()
+    socket.emit('history', db.data.stories);
+
+    socket.on('msg', async (data) => {
+        console.log("Received message:", data);
+
+        // 2️⃣ salvo permanentemente
+        db.data.stories.push(data);
+        await db.write();
+
+        // 3️⃣ invio a tutti
+        io.emit('msg', data);
     });
 
     socket.on('disconnect', () => {
         console.log("Client disconnected:", socket.id);
     });
 });
+
+
+
+
 
 // Port
 let port = process.env.PORT || 3000;
