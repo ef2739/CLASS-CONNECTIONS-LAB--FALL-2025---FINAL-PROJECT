@@ -78,9 +78,9 @@ if (storyInput && sendButton && storiesWrapper) {
         // Aggiungi il paragrafo al container
         storyContainer.appendChild(msgEl);
 
-        // ⭐ POSIZIONE RANDOM (con parentesi!) ⭐
-        let randomX = Math.random() * 80; // ✅ CORRETTO
-        let randomY = Math.random() * 80; // ✅ CORRETTO
+        // POSIZIONE RANDOM 
+        let randomX = Math.random() * 80;
+        let randomY = Math.random() * 80; 
 
         // Applica la posizione
         storyContainer.style.position = 'absolute';
@@ -136,7 +136,7 @@ playBtn.addEventListener("click", ()=> {
         Tone.start ();
     }
 //play a middle 'C' for the duration of an 8th note
-synth.triggerAttackRelease("A5", "n");
+synth.triggerAttackRelease("A5", "0,5n");
 })
 
 
