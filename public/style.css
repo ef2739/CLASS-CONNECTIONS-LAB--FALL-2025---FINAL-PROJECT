@@ -31,7 +31,7 @@
     box-sizing: border-box;
 }
 
-.body-index {
+.body-index{
     background-color: black;
 }
 
@@ -150,7 +150,7 @@ button {
 
 #story-input {
     width: 100%;
-    min-height: 75px;
+    min-height: 70px;
     max-height: 40vh;
     background-color: black;
     resize: none;
@@ -208,4 +208,61 @@ button {
 }
 
 
+/* --- Mobile adjustments --- */
+@media screen and (max-width: 768px) {
 
+    body {
+        overflow-x: hidden;
+        padding: 10px;
+    }
+
+    /* LOGIN */
+    #passwordInput {
+        font-size: 18px;
+        padding: 12px;
+        width: 100%;
+    }
+
+    #loginBtn {
+        font-size: 18px;
+        padding: 12px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* AREA DELLE STORIE */
+    #stories-wrapper {
+        position: relative;
+        width: 100%;
+        height: 80vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+        touch-action: manipulation;
+    }
+
+    .story-item {
+        max-width: 85vw;
+        font-size: 16px;
+        padding: 8px 10px;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.75);
+        backdrop-filter: blur(4px);
+        word-break: break-word;
+    }
+
+    /* CAMPO DI INPUT */
+    #story-input {
+        width: 100%;
+        font-size: 18px;
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    #story-submit {
+        width: 100%;
+        font-size: 20px;
+        padding: 14px;
+        margin-top: 10px;
+        border-radius: 12px;
+    }
+}
