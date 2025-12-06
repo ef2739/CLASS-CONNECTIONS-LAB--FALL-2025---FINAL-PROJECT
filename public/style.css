@@ -29,9 +29,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* background: black; */
 }
 
+.body-index{
+    background-color: black;
+}
 
 .firstpagebox {
     z-index: 1;
@@ -44,6 +46,7 @@
     border-style: solid;
     border-color: chartreuse;
     align-content: center;
+    background-color: black;
 }
 
 .password {
@@ -57,8 +60,9 @@
     font-family: monospace;
     color: chartreuse;
     width: 40%;
-    /* margin-left: 5%; */
     align-content: center;
+    background-color: black;
+
 }
 
 #loginBtn {
@@ -68,9 +72,8 @@
     border: white;
     border-radius: 10px;
     align-content: center;
-    color: white;
-    /* margin-top: 5%; */
-    /* margin-left: 47%; */
+    color: chartreuse;
+    background-color: black;
     -moz-box-shadow: inset 1px 1px 5px #848484;
     -webkit-box-shadow: inset 1px 1px 5px #848484;
 
@@ -99,9 +102,7 @@ button {
     font-size: 1.1rem;
     color: chartreuse;
     column-count: 2;
-    /* Imposta due colonne */
     column-gap: 20px;
-    /* Spazio tra le colonne */
 }
 
 
@@ -129,6 +130,7 @@ button {
     justify-content: center;
     position: relative;
     font-family: sans-serif;
+    background-color: black;
 }
 
 
@@ -137,7 +139,7 @@ button {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 50vw;
+    width: 60vw;
     /* height: 10vh; */
     display: flex;
     gap: 10px;
@@ -148,31 +150,34 @@ button {
 
 #story-input {
     width: 100%;
-    min-height: 40px;
+    min-height: 70px;
     max-height: 40vh;
+    background-color: black;
     resize: none;
     overflow-y: auto;
     overflow-x: hidden;
     word-wrap: break-word;
     word-break: normal;
     white-space: pre-wrap;
-    padding: 10px;
+    padding: 5px;
     border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 14px;
-    color: black;
+    color: white;
     line-height: 1.4;
 }
 
 
 #story-submit {
     padding: 10px 18px;
-    border-radius: 6px;
-    border: 1px solid #000;
+    border-radius: 10px;
+    border: 1px solid white;
     background: black;
     cursor: pointer;
     color: white;
     z-index: 10000;
+    -moz-box-shadow: inset 1px 1px 5px #848484;
+    -webkit-box-shadow: inset 1px 1px 5px #848484;
 }
 
 #stories-wrapper {
@@ -186,17 +191,18 @@ button {
 .story-item {
     position: absolute; /* Per il posizionamento random */
     max-width: 300px; /* Larghezza massima di ogni storia */
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: black;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border-left: 5px solid #333;
+    box-shadow: 0 4px 15px chartreuse;
+    border-left: 5px solid;
+    border-color: chartreuse;
     cursor: move; /* Indica che si può spostare (opzionale) */
 }
 
 .story-item p {
     line-height: 1.6;
-    font-size: 14px;
-    color: #333;
+    font-size: 10px;
+    color: chartreuse;
     margin: 0;
 }
