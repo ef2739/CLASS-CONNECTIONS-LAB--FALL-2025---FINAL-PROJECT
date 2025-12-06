@@ -218,16 +218,16 @@ button {
 
     /* LOGIN */
     #passwordInput {
-        font-size: 18px;
-        padding: 12px;
+        font-size: 9px;
+        padding: 5px;
         width: 100%;
     }
 
     #loginBtn {
         font-size: 18px;
-        padding: 12px;
+        padding: 5px;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
     /* AREA DELLE STORIE */
@@ -253,16 +253,16 @@ button {
     /* CAMPO DI INPUT */
     #story-input {
         width: 100%;
-        font-size: 18px;
+        font-size: 10px;
         padding: 10px;
         border-radius: 12px;
     }
 
     #story-submit {
         width: 100%;
-        font-size: 20px;
-        padding: 14px;
-        margin-top: 10px;
+        font-size: 9px;
+        padding: 10px;
+        margin-top: 5px;
         border-radius: 12px;
     }
 }
