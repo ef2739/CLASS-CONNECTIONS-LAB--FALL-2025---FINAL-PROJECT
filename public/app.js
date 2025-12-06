@@ -110,15 +110,71 @@ if (storyInput && sendButton && storiesWrapper) {
         msgEl.textContent = data.msg;
 
         storyContainer.appendChild(msgEl);
-
-        let randomX = Math.random() * 80;
-        let randomY = Math.random() * 80;
-
         storyContainer.style.position = 'absolute';
-        storyContainer.style.left = randomX + '%';
-        storyContainer.style.top = randomY + '%';
+
+        // funzione che prova finché non trova uno spazio libero
+        let pos = findNonOverlappingPosition(storyContainer);
+        pos = clampPosition(pos.x, pos.y);
+        storyContainer.style.left = pos.x + '%';
+        storyContainer.style.top = pos.y + '%';
 
         storiesWrapper.appendChild(storyContainer);
+    }
+
+    function findNonOverlappingPosition(el) {
+        let stories = document.querySelectorAll('.story-item');
+        let totalSectors = 12; // puoi aumentare se vuoi più spazio
+
+        if (stories.length >= totalSectors) {
+            // se pieno: torna alla distribuzione casuale
+            return {
+                x: Math.random() * 80,
+                y: Math.random() * 80
+            };
+        }
+
+        let used = [];
+        stories.forEach(story => {
+            used.push(story.dataset.sector);
+        });
+
+        let sector;
+        do {
+            sector = Math.floor(Math.random() * totalSectors);
+        } while (used.includes(sector.toString()));
+
+        el.dataset.sector = sector;
+
+        // trasformiamo i settori in coordinate
+        let cols = 4; // 4 colonne invisibili
+        let rows = 3; // 3 righe invisibili
+
+        let cellWidth = 80 / cols;
+        let cellHeight = 80 / rows;
+
+        let col = sector % cols;
+        let row = Math.floor(sector / cols);
+
+        let x = col * cellWidth + Math.random() * (cellWidth - 10);
+        let y = row * cellHeight + Math.random() * (cellHeight - 10);
+
+        return {
+            x,
+            y
+        };
+    }
+
+    // --- MOBILE FIX: impedisce che i box escano fuori dallo schermo ---
+    function clampPosition(x, y) {
+        if (window.innerWidth < 768) {
+            // limiti più stretti sui telefoni
+            x = Math.max(2, Math.min(x, 70));
+            y = Math.max(2, Math.min(y, 70));
+        }
+        return {
+            x,
+            y
+        };
     }
 
 
