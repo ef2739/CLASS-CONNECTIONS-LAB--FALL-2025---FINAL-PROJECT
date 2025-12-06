@@ -53,6 +53,12 @@ if (storyInput && sendButton && storiesWrapper) {
 
     let socket = io();
 
+    socket.on("history", (stories) => {
+        stories.forEach(sharedstory => {
+            createStoryElement(sharedstory);
+        })
+    })
+
     socket.on('connect', function () {
         console.log("Connected to server!");
     });
@@ -66,29 +72,7 @@ if (storyInput && sendButton && storiesWrapper) {
     // Ricevi messaggi dal server
     socket.on('msg', function (data) {
         console.log("Message received:", data);
-
-        // Crea un nuovo container per ogni storia
-        let storyContainer = document.createElement("div");
-        storyContainer.className = 'story-item';
-
-        // Crea il paragrafo con il testo
-        let msgEl = document.createElement('p');
-        msgEl.textContent = data.msg;
-
-        // Aggiungi il paragrafo al container
-        storyContainer.appendChild(msgEl);
-
-        // POSIZIONE RANDOM 
-        let randomX = Math.random() * 80;
-        let randomY = Math.random() * 80; 
-
-        // Applica la posizione
-        storyContainer.style.position = 'absolute';
-        storyContainer.style.left = randomX + '%';
-        storyContainer.style.top = randomY + '%';
-
-        // Aggiungi al wrapper
-        storiesWrapper.appendChild(storyContainer);
+        createStoryElement(data);
     });
 
     // Invia messaggi al server
@@ -117,6 +101,27 @@ if (storyInput && sendButton && storiesWrapper) {
             sendButton.click();
         }
     });
+
+    function createStoryElement(data) {
+        let storyContainer = document.createElement("div");
+        storyContainer.className = 'story-item';
+
+        let msgEl = document.createElement('p');
+        msgEl.textContent = data.msg;
+
+        storyContainer.appendChild(msgEl);
+
+        let randomX = Math.random() * 80;
+        let randomY = Math.random() * 80;
+
+        storyContainer.style.position = 'absolute';
+        storyContainer.style.left = randomX + '%';
+        storyContainer.style.top = randomY + '%';
+
+        storiesWrapper.appendChild(storyContainer);
+    }
+
+
 }
 
 
@@ -131,15 +136,10 @@ let playBtn = document.getElementById("story-submit");
 
 
 //autoplay policies 
-playBtn.addEventListener("click", ()=> {
-    if (Tone.context.state !==  "running"){
-        Tone.start ();
+playBtn.addEventListener("click", () => {
+    if (Tone.context.state !== "running") {
+        Tone.start();
     }
-//play a middle 'C' for the duration of an 8th note
-synth.triggerAttackRelease("A5", "0,5n");
+    //play a middle 'C' for the duration of an 8th note
+    synth.triggerAttackRelease("A5", "0,5n");
 })
-
-
-
-
-
