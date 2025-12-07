@@ -20,7 +20,7 @@
     border-style: solid;
     border-radius: 10px;
     border-color: chartreuse;
-    box-shadow: 0 4px 15px chartreuse;
+    box-shadow: 4px 4px 15px chartreuse;
     align-content: center;
     background-color: black;
 }
@@ -268,4 +268,5 @@ button {
         border-radius: 12px;
     }
 }
+
 
