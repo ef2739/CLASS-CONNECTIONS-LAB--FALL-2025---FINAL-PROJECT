@@ -190,6 +190,8 @@ if (storyInput && sendButton && storiesWrapper) {
         };
     }
 
+
+
 }
 
 
@@ -198,7 +200,10 @@ if (storyInput && sendButton && storiesWrapper) {
 //create a synth and connect it to the main output (your speakers)
 let synth = new Tone.Synth().toDestination();
 
+
 let playBtn = document.getElementById("story-submit");
+
+
 
 //autoplay policies 
 playBtn.addEventListener("click", () => {
