@@ -34,11 +34,24 @@ if (loginBtn && passwordInput) {
         }
     });
 
-    let paragraphs = document.querySelectorAll('.highlight-words');
-    paragraphs.forEach(p => {
+
+    //Create an hover effect on each word from the text in the background => AI
+    let underlinedwords = document.querySelectorAll('.highlight-words p');
+
+    underlinedwords.forEach(p => {
         let text = p.textContent;
-        let words = text.split(' ');
-        p.innerHTML = words.map(word => `<span>${word}</span>`).join(' ');
+
+        // Divide the words and mantain the spaces
+        let words = text.split(/(\s+)/);
+
+        p.innerHTML = words.map(part => {
+            // If there's a space, leave it as it is 
+            if (/^\s+$/.test(part)) {
+                return part;
+            }
+            // otherwise wrap the word in a span
+            return `<span>${part}</span>`;
+        }).join('');
     });
 }
 
@@ -177,7 +190,6 @@ if (storyInput && sendButton && storiesWrapper) {
         };
     }
 
-
 }
 
 
@@ -186,10 +198,7 @@ if (storyInput && sendButton && storiesWrapper) {
 //create a synth and connect it to the main output (your speakers)
 let synth = new Tone.Synth().toDestination();
 
-
 let playBtn = document.getElementById("story-submit");
-
-
 
 //autoplay policies 
 playBtn.addEventListener("click", () => {
