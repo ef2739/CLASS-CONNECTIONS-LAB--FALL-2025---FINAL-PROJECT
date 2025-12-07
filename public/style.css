@@ -1,29 +1,3 @@
-/* @font-face { */
-/* font-family: 'Tasa orbiter deck semibold';
-    src: url(font/tasaorbiterdeck-semibold-webfont.woff2) format('woff2'),
-        url(font/tasaorbiterdeck-semibold-webfont.woff) format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Tasa orbiter deck M';
-    src: url(./font/tasaorbiterdisplay-medium-webfont.woff2) format('woff2'),
-        url(./font/tasaorbiterdisplay-medium-webfont.woff) format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Tasa orbiter deck R';
-    src: url(font/tasaorbiterdisplay-regular-webfont.woff2) format('woff2'),
-        url(font/tasaorbiterdisplay-regular-webfont.woff) format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap; */
-/* } */
 
 * {
     margin: 0;
@@ -31,7 +5,7 @@
     box-sizing: border-box;
 }
 
-.body-index{
+.body-index {
     background-color: black;
 }
 
@@ -44,7 +18,9 @@
     position: fixed;
     border-width: 3px;
     border-style: solid;
+    border-radius: 10px;
     border-color: chartreuse;
+    /* box-shadow: 0 4px 15px chartreuse; */
     align-content: center;
     background-color: black;
 }
@@ -56,13 +32,12 @@
 }
 
 #passwordInput {
-    /* font-family: Tasa orbiter deck semibold; */
     font-family: monospace;
     color: chartreuse;
     width: 40%;
     align-content: center;
     background-color: black;
-
+   
 }
 
 #loginBtn {
@@ -76,7 +51,7 @@
     background-color: black;
     -moz-box-shadow: inset 1px 1px 5px #848484;
     -webkit-box-shadow: inset 1px 1px 5px #848484;
-
+   
 }
 
 input,
@@ -99,18 +74,33 @@ button {
 .background {
     z-index: -1;
     font-family: monospace;
-    font-size: 1.1rem;
+    font-size: 0.7rem;
+    line-height: 1.2;
     color: chartreuse;
-    column-count: 2;
-    column-gap: 20px;
-}
+    columns: 2;
+    column-gap: 5vh;
 
+}
 
 /* create an hover effect where every word is hihglited in white when the mouse passes over it */
 
+.highlight-words {
+    user-select: text; /* Permette la selezione del testo */
+    -webkit-user-select: text;
+    -moz-user-select: text;
+}
+
+.highlight-words p {
+    margin-bottom: 1em; /* Spazio tra paragrafi */
+    word-wrap: break-word; /* Fa andare a capo le parole lunghe */
+    overflow-wrap: break-word;
+    white-space: normal; /* Permette il wrap naturale */
+}
+
+
+/* Effetto hover sulle singole parole */
 .highlight-words span {
-    display: inline-block;
-    padding: 2px 4px;
+    display: inline; /* Cambiato da inline-block a inline */
     transition: all 0.2s ease;
     cursor: pointer;
 }
@@ -118,7 +108,14 @@ button {
 .highlight-words span:hover {
     background-color: white;
     color: black;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.separator {
+    break-inside: avoid;
+    display: block;
+    width: 100%;
+    margin: 1em 0; /* Aggiunto margine */
 }
 
 .body-main {
@@ -132,6 +129,7 @@ button {
     font-family: sans-serif;
     background-color: black;
 }
+
 
 
 .story-form {
@@ -183,21 +181,25 @@ button {
 #stories-wrapper {
     position: relative;
     width: 100%;
-    min-height: 100vh; /* Altezza di tutta la pagina */
+    min-height: 100vh;
+    /* Altezza di tutta la pagina */
     padding: 20px;
     padding-bottom: 20vh;
 }
 
 .story-item {
-    position: absolute; /* Per il posizionamento random */
-    max-width: 300px; /* Larghezza massima di ogni storia */
+    position: absolute;
+    /* Per il posizionamento random */
+    max-width: 300px;
+    /* Larghezza massima di ogni storia */
     background-color: black;
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 4px 15px chartreuse;
     border-left: 5px solid;
     border-color: chartreuse;
-    cursor: move; /* Indica che si può spostare (opzionale) */
+    cursor: move;
+    /* Indica che si può spostare (opzionale) */
 }
 
 .story-item p {
@@ -245,7 +247,7 @@ button {
         font-size: 16px;
         padding: 8px 10px;
         border-radius: 8px;
-        background: rgba(255,255,255,0.75);
+        background: rgba(255, 255, 255, 0.75);
         backdrop-filter: blur(4px);
         word-break: break-word;
     }
