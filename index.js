@@ -42,25 +42,6 @@ let server = createServer(app);
 // Initialize socket.io (ESM corrected)
 let io = new Server(server);
 
-//Listen for individual clients/users to connect
-// io.on('connection', (socket) => {
-//     console.log("We have a new client:", socket.id);
-
-//     socket.on('msg', (data) => {
-//         console.log("Received 'msg' event:", data);
-
-//         // send to everyone
-//         io.emit('msg', data);
-
-    
-//     });
-
-//     socket.on('disconnect', () => {
-//         console.log("Client disconnected:", socket.id);
-//     });
-// });
-
-
 io.on('connection', async (socket) => {
     console.log("New client:", socket.id);
 
@@ -83,8 +64,6 @@ io.on('connection', async (socket) => {
         console.log("Client disconnected:", socket.id);
     });
 });
-
-
 
 
 
