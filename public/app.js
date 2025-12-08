@@ -199,17 +199,15 @@ if (storyInput && sendButton && storiesWrapper) {
 
 //create a synth and connect it to the main output (your speakers)
 let synth = new Tone.Synth().toDestination();
-
-
 let playBtn = document.getElementById("story-submit");
 
 
-
 //autoplay policies 
-playBtn.addEventListener("click", () => {
+playBtn.addEventListener("click", async () => {
     if (Tone.context.state !== "running") {
-        Tone.start();
+        await Tone.start();
     }
     //play a middle 'C' for the duration of an 8th note
     synth.triggerAttackRelease("A5", "0,5n");
 })
+
