@@ -67,6 +67,7 @@ if (storyInput && sendButton && storiesWrapper) {
     let socket = io();
 
     socket.on("history", (stories) => {
+        console.log("history received");
         stories.forEach(sharedstory => {
             createStoryElement(sharedstory);
         })
@@ -89,7 +90,14 @@ if (storyInput && sendButton && storiesWrapper) {
     });
 
     // Invia messaggi al server
-    sendButton.addEventListener('click', function () {
+    sendButton.addEventListener('click', async function () {
+        console.log("but")
+        if (Tone.context.state !== "running") {
+            await Tone.start();
+        }
+        //play a middle 'C' for the duration of an 8th note
+        synth.triggerAttackRelease("C4", "0,5n");
+
         console.log("Sending message...");
 
         let curStory = storyInput.value;
@@ -191,7 +199,6 @@ if (storyInput && sendButton && storiesWrapper) {
     }
 
 
-
 }
 
 
@@ -199,15 +206,5 @@ if (storyInput && sendButton && storiesWrapper) {
 
 //create a synth and connect it to the main output (your speakers)
 let synth = new Tone.Synth().toDestination();
-let playBtn = document.getElementById("story-submit");
-
-
-//autoplay policies 
-playBtn.addEventListener("click", async () => {
-    if (Tone.context.state !== "running") {
-        await Tone.start();
-    }
-    //play a middle 'C' for the duration of an 8th note
-    synth.triggerAttackRelease("A5", "0,5n");
-})
+// let playBtn = document.getElementById("story-submit");
 
