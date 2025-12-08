@@ -20,7 +20,7 @@
     border-style: solid;
     border-radius: 10px;
     border-color: chartreuse;
-    box-shadow: 4px 4px 15px chartreuse;
+    /* box-shadow: 0 4px 15px chartreuse; */
     align-content: center;
     background-color: black;
 }
@@ -32,6 +32,7 @@
 }
 
 #passwordInput {
+    /* font-family: Tasa orbiter deck semibold; */
     font-family: monospace;
     color: chartreuse;
     width: 40%;
@@ -128,6 +129,7 @@ button {
     position: relative;
     font-family: sans-serif;
     background-color: black;
+    margin-bottom: 200px;
 }
 
 
@@ -182,7 +184,6 @@ button {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* Altezza di tutta la pagina */
     padding: 20px;
     padding-bottom: 20vh;
 }
@@ -247,9 +248,10 @@ button {
         font-size: 16px;
         padding: 8px 10px;
         border-radius: 8px;
-        background: rgba(255, 255, 255, 0.75);
+        background: black;
         backdrop-filter: blur(4px);
         word-break: break-word;
+        display: block;
     }
 
     /* CAMPO DI INPUT */
@@ -268,5 +270,3 @@ button {
         border-radius: 12px;
     }
 }
-
-
