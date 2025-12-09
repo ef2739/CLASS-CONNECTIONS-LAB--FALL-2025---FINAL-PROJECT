@@ -126,7 +126,7 @@ button {
     position: relative;
     font-family: sans-serif;
     background-color: black;
-    margin-bottom: 200px;
+    margin-bottom: 300px;
 }
 
 
@@ -263,3 +263,4 @@ button {
         border-radius: 12px;
     }
 }
+
