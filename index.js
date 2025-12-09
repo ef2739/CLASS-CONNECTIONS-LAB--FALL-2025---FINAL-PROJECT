@@ -1,3 +1,5 @@
+//import express, socket and db + dotenv for the password security
+
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
@@ -12,7 +14,6 @@ let defaultData = { stories: [] }
 
 let db = new Low(adapter, defaultData)
 
-// Carica il file (se esiste) oppure usa defaultData
 await db.read()
 
 
@@ -26,7 +27,7 @@ let app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// POST route per controllare la password
+// post route to check the password
 app.post('/check-password', (req, res) => {
     let { password } = req.body;
     if (password === process.env.PASSWORD) {
@@ -45,18 +46,18 @@ let io = new Server(server);
 io.on('connection', async (socket) => {
     console.log("New client:", socket.id);
 
-    // 1️⃣ quando un utente entra, gli invio la cronologia
+    // when a new client joins, send the history of the written stories on the screen.
     await db.read()
     socket.emit('history', db.data.stories);
 
     socket.on('msg', async (data) => {
         console.log("Received message:", data);
 
-        // 2️⃣ salvo permanentemente
+        // save the sìwritten stories permanently
         db.data.stories.push(data);
         await db.write();
 
-        // 3️⃣ invio a tutti
+        // send the messagge to all 
         io.emit('msg', data);
     });
 
