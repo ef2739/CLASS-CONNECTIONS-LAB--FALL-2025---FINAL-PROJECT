@@ -1,13 +1,13 @@
-// app.js - Funziona per ENTRAMBE le pagine (index.html e main.html)
+//this document works both for index.html and main.html
 
-// ===== CODICE PER INDEX.HTML (LOGIN) =====
+// index.html
 let loginBtn = document.getElementById("loginBtn");
 let passwordInput = document.getElementById("passwordInput");
 
+//create a process for the password verification
 if (loginBtn && passwordInput) {
     loginBtn.addEventListener("click", async () => {
         let input = passwordInput.value;
-
         let response = await fetch('/check-password', {
             method: 'POST',
             headers: {
@@ -35,7 +35,7 @@ if (loginBtn && passwordInput) {
     });
 
 
-    //Create an hover effect on each word from the text in the background => AI
+ //Create an hover effect on each word from the text in the background
     let underlinedwords = document.querySelectorAll('.highlight-words p');
 
     underlinedwords.forEach(p => {
@@ -55,17 +55,16 @@ if (loginBtn && passwordInput) {
     });
 }
 
-// ===== CODICE PER MAIN.HTML (STORIE) =====
+// main.html
 let storyInput = document.getElementById('story-input');
 let sendButton = document.getElementById('story-submit');
-let storiesWrapper = document.getElementById('stories-wrapper'); // ⚠️ Cambiato in wrapper
+let storiesWrapper = document.getElementById('stories-wrapper'); 
 
+
+//when the user writes the personal story and presses send, show the message on the page.
 if (storyInput && sendButton && storiesWrapper) {
-
     alert("TRIGGER WARNING: gender violence, sexual assault, abuse, psychological violence");
-
     let socket = io();
-
     socket.on("history", (stories) => {
         console.log("history received");
         stories.forEach(sharedstory => {
@@ -77,19 +76,23 @@ if (storyInput && sendButton && storiesWrapper) {
         console.log("Connected to server!");
     });
 
-    // Auto-resize textarea
+
+    
+// Auto-resize textarea where the user writes the story
     storyInput.addEventListener("input", () => {
         storyInput.style.height = "auto";
         storyInput.style.height = storyInput.scrollHeight + "px";
     });
 
-    // Ricevi messaggi dal server
+    
+    // receive messages from the server
     socket.on('msg', function (data) {
         console.log("Message received:", data);
         createStoryElement(data);
     });
 
-    // Invia messaggi al server
+    // send messages to the server
+    //when the send button is pressed trigger a note 
     sendButton.addEventListener('click', async function () {
         console.log("but")
         if (Tone.context.state !== "running") {
@@ -115,13 +118,15 @@ if (storyInput && sendButton && storiesWrapper) {
         }
     });
 
-    // Invio con Enter
+    // send with enter 
     storyInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             sendButton.click();
         }
     });
+
+    
 
     function createStoryElement(data) {
         let storyContainer = document.createElement("div");
@@ -133,7 +138,7 @@ if (storyInput && sendButton && storiesWrapper) {
         storyContainer.appendChild(msgEl);
         storyContainer.style.position = 'absolute';
 
-        // funzione che prova finché non trova uno spazio libero
+        // format the page so that the stories do not overlap on the screen
         let pos = findNonOverlappingPosition(storyContainer);
         pos = clampPosition(pos.x, pos.y);
         storyContainer.style.left = pos.x + '%';
@@ -144,10 +149,10 @@ if (storyInput && sendButton && storiesWrapper) {
 
     function findNonOverlappingPosition(el) {
         let stories = document.querySelectorAll('.story-item');
-        let totalSectors = 12; // puoi aumentare se vuoi più spazio
+        let totalSectors = 12; // 
 
         if (stories.length >= totalSectors) {
-            // se pieno: torna alla distribuzione casuale
+            // if the apge it's full go back to random distribution on the page
             return {
                 x: Math.random() * 80,
                 y: Math.random() * 80
@@ -166,9 +171,9 @@ if (storyInput && sendButton && storiesWrapper) {
 
         el.dataset.sector = sector;
 
-        // trasformiamo i settori in coordinate
-        let cols = 4; // 4 colonne invisibili
-        let rows = 3; // 3 righe invisibili
+        // divide the page inro sectors
+        let cols = 4; // 4 invisible columns
+        let rows = 3; // 3 invisible rows
 
         let cellWidth = 80 / cols;
         let cellHeight = 80 / rows;
@@ -185,10 +190,9 @@ if (storyInput && sendButton && storiesWrapper) {
         };
     }
 
-    // --- MOBILE FIX: impedisce che i box escano fuori dallo schermo ---
+    // mobile fix : avoid the stories to exit the screen
     function clampPosition(x, y) {
         if (window.innerWidth < 768) {
-            // limiti più stretti sui telefoni
             x = Math.max(2, Math.min(x, 70));
             y = Math.max(2, Math.min(y, 70));
         }
@@ -198,13 +202,13 @@ if (storyInput && sendButton && storiesWrapper) {
         };
     }
 
-
 }
 
 
-// //TONE.JS--> SOUND DESIGN
 
-//create a synth and connect it to the main output (your speakers)
+
+//tone.js --> synth
 let synth = new Tone.Synth().toDestination();
-// let playBtn = document.getElementById("story-submit");
+
+
 
